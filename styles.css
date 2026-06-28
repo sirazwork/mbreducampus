@@ -28,6 +28,10 @@ body {
   overflow-x: hidden;
 }
 
+body.lightbox-open {
+  overflow: hidden;
+}
+
 img {
   display: block;
   max-width: 100%;
@@ -398,13 +402,20 @@ nav a {
 
 .value-grid-section,
 .action-steps,
-.document-section {
+.document-section,
+.reading-section,
+.action-detail-section,
+.contact-section {
   background: #fff;
 }
 
 .value-grid,
 .step-list,
-.document-grid {
+.document-grid,
+.reading-grid,
+.action-detail-grid,
+.contact-grid,
+.quick-link-grid {
   display: grid;
   gap: 18px;
 }
@@ -414,13 +425,18 @@ nav a {
 }
 
 .step-list,
-.document-grid {
+.document-grid,
+.reading-grid,
+action-detail-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .value-grid article,
 .step-list article,
-.document-grid article {
+.document-grid article,
+.reading-grid article,
+.action-detail-grid article,
+.contact-card {
   padding: 24px;
   background: #fff;
   border: 1px solid var(--line);
@@ -443,8 +459,54 @@ nav a {
 
 .value-grid p,
 .step-list p,
-.document-grid p {
+.document-grid p,
+.reading-grid p,
+.action-detail-grid p,
+.contact-card p {
   color: var(--muted);
+}
+
+.reading-grid article,
+.action-detail-grid article {
+  display: grid;
+  align-content: start;
+}
+
+.contact-grid {
+  grid-template-columns: minmax(0, 1.2fr) repeat(2, minmax(0, 0.9fr));
+}
+
+.contact-card {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+}
+
+.contact-card h2 {
+  font-size: clamp(28px, 4vw, 44px);
+}
+
+.contact-primary-card {
+  grid-row: span 2;
+}
+
+.contact-actions {
+  display: grid;
+  gap: 12px;
+}
+
+.quick-link-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.quick-link-grid a {
+  padding: 22px;
+  color: var(--navy);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
 }
 
 .document-grid article {
@@ -504,6 +566,79 @@ nav a {
 
 .gallery-grid button:hover img {
   transform: scale(1.04);
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr) 72px;
+  align-items: center;
+  gap: 12px;
+  padding: 72px clamp(14px, 4vw, 42px) 36px;
+  background: rgba(16, 24, 39, 0.92);
+}
+
+.lightbox[hidden] {
+  display: none;
+}
+
+.lightbox-frame {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  min-width: 0;
+  margin: 0;
+}
+
+.lightbox-frame img {
+  max-width: 100%;
+  max-height: calc(100vh - 160px);
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.36);
+  cursor: zoom-out;
+}
+
+.lightbox-frame figcaption {
+  color: #f4f7fb;
+  text-align: center;
+  font-size: 14px;
+}
+
+.lightbox-close,
+.lightbox-arrow {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.14);
+  cursor: pointer;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  min-height: 40px;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 700;
+}
+
+.lightbox-arrow {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  font-size: 40px;
+  line-height: 1;
+}
+
+.lightbox-prev {
+  justify-self: end;
+}
+
+.lightbox-next {
+  justify-self: start;
 }
 
 .video-grid {
@@ -611,8 +746,16 @@ nav a {
   .home-feature-grid,
   .value-grid,
   .step-list,
-  .document-grid {
+  .document-grid,
+  .reading-grid,
+  .action-detail-grid,
+  .contact-grid,
+  .quick-link-grid {
     grid-template-columns: 1fr;
+  }
+
+  .contact-primary-card {
+    grid-row: auto;
   }
 
   .press-grid article {
@@ -705,5 +848,21 @@ nav a {
   .gallery-grid,
   .prospectus-grid {
     grid-template-columns: 1fr;
+  }
+
+  .lightbox {
+    grid-template-columns: 48px minmax(0, 1fr) 48px;
+    gap: 6px;
+    padding: 70px 8px 28px;
+  }
+
+  .lightbox-arrow {
+    width: 42px;
+    height: 42px;
+    font-size: 30px;
+  }
+
+  .lightbox-frame img {
+    max-height: calc(100vh - 150px);
   }
 }
