@@ -77,6 +77,7 @@ function renderGallery() {
   if (!grid) return;
 
   const allImages = [...visionImages, ...extractedGalleryImages, ...pressImages, ...prospectusImages];
+  const lightbox = createLightbox(allImages);
   allImages.forEach((item, index) => {
     const button = document.createElement("button");
     button.type = "button";
@@ -88,9 +89,81 @@ function renderGallery() {
     image.loading = "lazy";
 
     button.append(image);
-    button.addEventListener("click", () => window.open(image.src, "_blank", "noopener"));
+    button.addEventListener("click", () => lightbox.open(index));
     grid.append(button);
   });
+}
+
+function createLightbox(items) {
+  let activeIndex = 0;
+  const dialog = document.createElement("div");
+  dialog.className = "lightbox";
+  dialog.setAttribute("role", "dialog");
+  dialog.setAttribute("aria-modal", "true");
+  dialog.setAttribute("aria-label", "Image viewer");
+  dialog.hidden = true;
+
+  dialog.innerHTML = `
+    <button class="lightbox-close" type="button" aria-label="Close image viewer">Close</button>
+    <button class="lightbox-arrow lightbox-prev" type="button" aria-label="Previous image">&lsaquo;</button>
+    <figure class="lightbox-frame">
+      <img alt="" />
+      <figcaption></figcaption>
+    </figure>
+    <button class="lightbox-arrow lightbox-next" type="button" aria-label="Next image">&rsaquo;</button>
+  `;
+
+  const image = dialog.querySelector("img");
+  const caption = dialog.querySelector("figcaption");
+  const closeButton = dialog.querySelector(".lightbox-close");
+  const prevButton = dialog.querySelector(".lightbox-prev");
+  const nextButton = dialog.querySelector(".lightbox-next");
+
+  function show(index) {
+    activeIndex = (index + items.length) % items.length;
+    const item = items[activeIndex];
+    image.src = item.src;
+    image.alt = item.label;
+    caption.textContent = `${item.label} - ${activeIndex + 1} of ${items.length}`;
+  }
+
+  function close() {
+    dialog.hidden = true;
+    document.body.classList.remove("lightbox-open");
+  }
+
+  function open(index) {
+    show(index);
+    dialog.hidden = false;
+    document.body.classList.add("lightbox-open");
+    closeButton.focus();
+  }
+
+  prevButton.addEventListener("click", (event) => {
+    event.stopPropagation();
+    show(activeIndex - 1);
+  });
+
+  nextButton.addEventListener("click", (event) => {
+    event.stopPropagation();
+    show(activeIndex + 1);
+  });
+
+  closeButton.addEventListener("click", close);
+  image.addEventListener("click", close);
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) close();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (dialog.hidden) return;
+    if (event.key === "Escape") close();
+    if (event.key === "ArrowLeft") show(activeIndex - 1);
+    if (event.key === "ArrowRight") show(activeIndex + 1);
+  });
+
+  document.body.append(dialog);
+  return { open };
 }
 
 function renderVideos() {
