@@ -725,6 +725,22 @@ action-detail-grid {
   color: #fff;
 }
 
+.page-support-cta {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 10px 18px;
+  color: #fff;
+  background: var(--navy);
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
 @media (max-width: 1000px) {
   .hero,
   .split,
@@ -776,6 +792,10 @@ action-detail-grid {
     width: 100%;
     overflow-x: auto;
     padding-bottom: 4px;
+  }
+
+  .page-support-cta {
+    width: 100%;
   }
 
   .hero {
