@@ -990,11 +990,23 @@ action-detail-grid {
 .progress-gallery { display: grid; grid-template-columns: 1.45fr .78fr .78fr; gap: 16px; height: 390px; }
 .progress-gallery img { width: 100%; height: 100%; object-fit: cover; }
 
+.campaign-section { background: #fff; }
+.campaign-grid { display: grid; grid-template-columns: minmax(320px,.8fr) minmax(0,1.2fr); align-items: center; gap: 82px; }
+.campaign-poster { margin: 0; padding: 10px; background: #fff; box-shadow: 0 18px 50px rgba(9,44,88,.16); }
+.campaign-poster img { width: 100%; max-height: 820px; object-fit: contain; }
+.campaign-copy h2 { margin: 0; color: var(--home-blue-deep); font-family: Georgia,"Times New Roman",serif; font-size: clamp(38px,4.2vw,56px); letter-spacing: -.035em; line-height: 1.08; }
+.campaign-copy > p:not(.kicker) { margin: 22px 0; color: var(--home-muted); font-size: 16px; line-height: 1.75; }
+.campaign-copy ul { display: grid; gap: 12px; margin: 0 0 30px; padding: 0; list-style: none; }
+.campaign-copy li { position: relative; padding-left: 27px; color: #43536a; }
+.campaign-copy li::before { position: absolute; top: .35em; left: 0; width: 13px; height: 13px; content: ""; background: var(--home-green); border-radius: 50%; }
+
 .support-cta { padding: 92px 0; color: #fff; background: var(--home-blue-deep); }
 .support-grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 85px; }
 .support-grid > div:first-child > p:not(.kicker) { max-width: 620px; margin: 20px 0 28px; color: #ccd9e8; font-size: 16px; }
 .home-page .button.gold-button { color: #1d3551; background: var(--home-gold); }
 .bank-card { padding: 34px 38px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15); }
+.payment-qr { width: 190px; max-width: 100%; margin: 0 auto 24px; padding: 8px; background: #fff; border-radius: 4px; }
+.bank-panel .payment-qr { width: 210px; }
 .bank-label { margin: 0 0 9px; color: var(--home-gold); font-size: 11px; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; }
 .bank-card h3 { margin: 0 0 24px; font-family: Georgia,serif; font-size: 22px; line-height: 1.35; }
 .bank-card dl { margin: 0; }
@@ -1035,6 +1047,8 @@ action-detail-grid {
   .home-header nav a { padding: 11px 0; }
   .home-header nav a::after { display: none; }
   .hero-grid, .intro-grid, .vision-banner-grid, .support-grid { grid-template-columns: 1fr; }
+  .campaign-grid { grid-template-columns: 1fr; gap: 45px; }
+  .campaign-poster { max-width: 540px; margin-inline: auto; }
   .hero-grid { min-height: auto; padding-block: 60px 80px; }
   .hero-copy { text-align: center; }
   .home-hero h1, .hero-lead { margin-inline: auto; }
