@@ -725,6 +725,213 @@ action-detail-grid {
   color: #fff;
 }
 
+nav a.active {
+  color: var(--teal);
+  font-weight: 700;
+}
+
+.books-hero {
+  background: linear-gradient(125deg, #f7fbff 0%, #e8f5f3 58%, #f5ecd8 100%);
+}
+
+.library-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.library-summary span {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 7px;
+  padding: 11px 16px;
+  color: #415066;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid #d6e3e8;
+  border-radius: 999px;
+  font-size: 13px;
+}
+
+.library-summary strong {
+  color: var(--navy);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 20px;
+}
+
+.book-library-section {
+  background: #f7f9fc;
+}
+
+.library-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 34px;
+}
+
+.library-heading h2 {
+  margin: 0;
+}
+
+.book-search {
+  display: grid;
+  gap: 7px;
+  min-width: min(340px, 100%);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.book-search input {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 14px;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid #cfd8e4;
+  border-radius: 6px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.book-search input:focus {
+  border-color: var(--teal);
+  outline: 3px solid rgba(27, 124, 122, 0.13);
+}
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.book-card {
+  display: grid;
+  grid-template-rows: 330px 1fr;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 12px 34px rgba(23, 32, 51, 0.07);
+}
+
+.book-card[hidden] {
+  display: none;
+}
+
+.book-card > img,
+.book-placeholder {
+  width: 100%;
+  height: 330px;
+  object-fit: contain;
+  padding: 14px;
+  background: #eef2f6;
+}
+
+.book-card > div:last-child {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.book-author {
+  margin: 0 0 8px;
+  color: var(--teal);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.book-card h3 {
+  margin: 0 0 10px;
+  color: var(--ink);
+  font-size: 21px;
+}
+
+.book-meta {
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.book-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  width: 100%;
+  margin-top: auto;
+}
+
+.book-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 9px 11px;
+  color: var(--navy);
+  border: 1px solid #b9c7d7;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.book-actions a.download {
+  color: #fff;
+  background: var(--navy);
+  border-color: var(--navy);
+}
+
+.book-card.unavailable {
+  opacity: 0.76;
+}
+
+.book-placeholder {
+  display: grid;
+  place-items: center;
+  background: linear-gradient(145deg, #dce5ee, #f3f5f8);
+}
+
+.book-placeholder span {
+  display: grid;
+  width: 94px;
+  height: 122px;
+  place-items: center;
+  color: #75859a;
+  border: 2px solid #9babbc;
+  border-radius: 4px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 25px;
+}
+
+.unavailable-label {
+  display: inline-flex;
+  margin-top: auto;
+  padding: 8px 12px;
+  color: #6b5c30;
+  background: #f4e8bd;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.book-empty {
+  padding: 40px;
+  color: var(--muted);
+  background: #fff;
+  border: 1px solid var(--line);
+  text-align: center;
+}
+
 .page-support-cta {
   display: inline-flex;
   flex: 0 0 auto;
@@ -776,6 +983,10 @@ action-detail-grid {
 
   .press-grid article {
     grid-template-columns: 1fr;
+  }
+
+  .book-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -884,6 +1095,19 @@ action-detail-grid {
 
   .lightbox-frame img {
     max-height: calc(100vh - 150px);
+  }
+
+  .library-heading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .book-search {
+    min-width: 0;
+  }
+
+  .book-grid {
+    grid-template-columns: 1fr;
   }
 }
 

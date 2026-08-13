@@ -190,6 +190,26 @@ function renderVideos() {
 renderGallery();
 renderVideos();
 
+const bookSearch = document.querySelector("#bookSearch");
+const bookCards = Array.from(document.querySelectorAll(".book-card"));
+const bookEmpty = document.querySelector("#bookEmpty");
+
+if (bookSearch && bookCards.length) {
+  bookSearch.addEventListener("input", () => {
+    const query = bookSearch.value.trim().toLocaleLowerCase();
+    let visibleCount = 0;
+
+    bookCards.forEach((card) => {
+      const title = (card.dataset.title || "").toLocaleLowerCase();
+      const matches = !query || title.includes(query);
+      card.hidden = !matches;
+      if (matches) visibleCount += 1;
+    });
+
+    if (bookEmpty) bookEmpty.hidden = visibleCount > 0;
+  });
+}
+
 const menuToggle = document.querySelector(".menu-toggle");
 const primaryNav = document.querySelector("#primary-nav");
 
